@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.6)
+cmake_minimum_required(VERSION 3.5)
 project(swtbahn-cli)
 
 set(CMAKE_C_STANDARD 11)
@@ -13,14 +13,14 @@ include_directories(${GLIB_INCLUDE_DIRS})
 # ADJUSTMENT SECTION BEGIN
 
 
-set(LIBONION_DIR /home/nicolas/git/onion)
+set(LIBONION_DIR /home/wirflbirfl/git/onion)
 add_library(onion_static STATIC IMPORTED)
 set_target_properties(onion_static PROPERTIES INTERFACE_INCLUDE_DIRECTORIES
 	${LIBONION_DIR}/src)
 set_target_properties(onion_static PROPERTIES IMPORTED_LOCATION
 	${LIBONION_DIR}/bin/src/onion/libonion_static.a)
 
-set(LIBBIDIB_DIR /home/nicolas/git/libbidib)
+set(LIBBIDIB_DIR /home/wirflbirfl/git/libbidib)
 add_library(bidib_static STATIC IMPORTED)
 set_target_properties(bidib_static PROPERTIES INTERFACE_INCLUDE_DIRECTORIES
 	${LIBBIDIB_DIR}/include)
@@ -37,4 +37,4 @@ file(GLOB SRCFILES
 
 add_executable(swtbahn-server src ${SRCFILES})
 target_link_libraries(swtbahn-server onion_static pam gnutls gcrypt pthread
-	glib-2.0 yaml bidib_static)
+	glib-2.0 bidib_static yaml)
